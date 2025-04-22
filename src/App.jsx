@@ -17,6 +17,7 @@ import initialTodos from "./todos.json";
 class App extends Component {
   state = {
     todos: initialTodos,
+    inputValue: "aaf",
   };
 
   deleteTodo = (todoId) => {
@@ -26,28 +27,30 @@ class App extends Component {
   };
 
   render() {
-    const { todos } = this.state;
+    // const { todos } = this.state;
 
-    const totalTodoCount = todos.length;
-    const completedTodoCount = todos.reduce(
-      (total, todo) => (todo.completed ? total + 1 : total),
-      0
-    );
+    // const totalTodoCount = todos.length;
+    // const completedTodoCount = todos.reduce(
+    //   (total, todo) => (todo.completed ? total + 1 : total),
+    //   0
+    // );
 
     return (
       <>
+        <input type="text" value={this.state.inputValue} />
+
         {/* <Counter initialValue={10} /> */}
 
         {/* <Dropdown /> */}
 
         {/* <ColorPicker options={colorPickerOptions} /> */}
 
-        <div>
+        {/* <div>
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Кол-во выполненных: {completedTodoCount}</p>
         </div>
 
-        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
+        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} /> */}
       </>
     );
   }
