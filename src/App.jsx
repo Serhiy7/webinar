@@ -39,7 +39,7 @@ class App extends Component {
       <>
         <input type="text" value={this.state.inputValue} />
 
-        {/* <Counter initialValue={10} /> */}
+        <Counter initialValue={10} />
 
         {/* <Dropdown /> */}
 
