@@ -38,7 +38,7 @@ class App extends Component {
       <>
         {/* <Counter initialValue={10} /> */}
 
-        {/* <Dropdown /> */}
+        <Dropdown />
 
         {/* <ColorPicker options={colorPickerOptions} /> */}
 
