@@ -3,6 +3,7 @@
 // import ColorPicker from "./components/ColorPicker";
 import TodoList from "./components/TodoList/";
 import { Component } from "react";
+import Form from "./components/Form/Form.jsx";
 import initialTodos from "./todos.json";
 
 // const colorPickerOptions = [
@@ -17,7 +18,6 @@ import initialTodos from "./todos.json";
 class App extends Component {
   state = {
     todos: initialTodos,
-    name: "",
   };
 
   deleteTodo = (todoId) => {
@@ -26,9 +26,10 @@ class App extends Component {
     }));
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+  formSubmitHandler = (data) => {
+    setTimeout(() => {
+      console.log(data);
+    }, 2000);
   };
 
   render() {
@@ -42,19 +43,9 @@ class App extends Component {
 
     return (
       <>
-        <form>
-          <lebel htmlFor="">
-            Имя
-            <input type="text" name="name" onChange={this.handleChange} />
-          </lebel>
-        </form>
+        <Form onSubm={this.formSubmitHandler} />
 
-        <form>
-          <lebel htmlFor="">
-            Прозвище
-            <input type="text" name="tag" onChange={this.handleChange} />
-          </lebel>
-        </form>
+        <Form onSubm={this.formSubmitHandler} />
 
         {/* <Counter initialValue={10} /> */}
 
