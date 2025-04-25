@@ -26,6 +26,11 @@ class App extends Component {
     }));
   };
 
+  handleInputChange = (event) => {
+    console.log(event.currentTarget.value);
+    this.setState({ inputValue: event.currentTarget.value });
+  };
+
   render() {
     // const { todos } = this.state;
 
@@ -37,9 +42,13 @@ class App extends Component {
 
     return (
       <>
-        <input type="text" value={this.state.inputValue} />
+        <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+        />
 
-        <Counter initialValue={10} />
+        {/* <Counter initialValue={10} /> */}
 
         {/* <Dropdown /> */}
 
