@@ -17,7 +17,7 @@ import initialTodos from "./todos.json";
 class App extends Component {
   state = {
     todos: initialTodos,
-    inputValue: "aaf",
+    name: "",
   };
 
   deleteTodo = (todoId) => {
@@ -26,9 +26,9 @@ class App extends Component {
     }));
   };
 
-  handleInputChange = (event) => {
-    console.log(event.currentTarget.value);
-    this.setState({ inputValue: event.currentTarget.value });
+  handleChange = (e) => {
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -42,11 +42,19 @@ class App extends Component {
 
     return (
       <>
-        <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-        />
+        <form>
+          <lebel htmlFor="">
+            Имя
+            <input type="text" name="name" onChange={this.handleChange} />
+          </lebel>
+        </form>
+
+        <form>
+          <lebel htmlFor="">
+            Прозвище
+            <input type="text" name="tag" onChange={this.handleChange} />
+          </lebel>
+        </form>
 
         {/* <Counter initialValue={10} /> */}
 
