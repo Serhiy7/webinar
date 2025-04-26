@@ -6,6 +6,7 @@ class Form extends Component {
     name: "",
     tag: "",
     experience: "junior",
+    licence: false,
   };
 
   nameInputId = shortid.generate(); // уникальные id
@@ -21,6 +22,11 @@ class Form extends Component {
     this.props.onSubm(this.state);
 
     this.reset();
+  };
+
+  handleLicenceChange = (e) => {
+    console.log(e.currentTarget.checked);
+    this.setState({ licence: e.currentTarget.checked });
   };
 
   reset = () => {
@@ -87,10 +93,18 @@ class Form extends Component {
         <br />
 
         <label>
-          <input type="checkbox" name />
+          <input
+            type="checkbox"
+            name="licence"
+            checked={this.state.licence} // в момент клика Браузер сам «переключает» внутреннее свойство input.checked на противоположное (из false → true, или наоборот).
+            onChange={this.handleLicenceChange} // браузер генерирует событие и React вызывает  обработчик
+          />
+          Согласен с условиями
         </label>
 
-        <button type="submit">Отправить</button>
+        <button type="submit" disabled={!this.state.licence}>
+          Отправить
+        </button>
       </form>
     );
   }
