@@ -5,6 +5,7 @@ class Form extends Component {
   state = {
     name: "",
     tag: "",
+    experience: "junior",
   };
 
   nameInputId = shortid.generate(); // уникальные id
@@ -29,7 +30,7 @@ class Form extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <lebel htmlFor={this.nameInputId}>
+        <label htmlFor={this.nameInputId}>
           Имя
           <input
             type="text"
@@ -38,9 +39,9 @@ class Form extends Component {
             onChange={this.handleChange}
             id={this.nameInputId}
           />
-        </lebel>
+        </label>
 
-        <lebel htmlFor={this.tagInputId}>
+        <label htmlFor={this.tagInputId}>
           Прозвище
           <input
             type="text"
@@ -49,7 +50,46 @@ class Form extends Component {
             onChange={this.handleChange}
             id={this.tagInputId}
           />
-        </lebel>
+        </label>
+
+        <p>Ваш уровень</p>
+        <label>
+          <input
+            type="radio"
+            name="experience"
+            value="junior"
+            onChange={this.handleChange}
+            checked={this.state.experience === "junior"}
+          />
+          Junior
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="experience"
+            value="middle"
+            onChange={this.handleChange}
+            checked={this.state.experience === "middle"}
+          />
+          Middle
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="experience"
+            value="senior"
+            onChange={this.handleChange}
+            checked={this.state.experience === "senior"}
+          />
+          Senior
+        </label>
+
+        <br />
+
+        <label>
+          <input type="checkbox" name />
+        </label>
+
         <button type="submit">Отправить</button>
       </form>
     );

@@ -45,11 +45,9 @@ class App extends Component {
       <>
         <Form onSubm={this.formSubmitHandler} />
 
-        <Form onSubm={this.formSubmitHandler} />
-
         {/* <Counter initialValue={10} /> */}
 
-        <Dropdown />
+        {/* <Dropdown /> */}
 
         {/* <ColorPicker options={colorPickerOptions} /> */}
 
