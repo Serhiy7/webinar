@@ -7,6 +7,7 @@ import { Component } from "react";
 // import Form from "./components/Form/Form.jsx";
 import initialTodos from "./todos.json";
 import shortid from "shortid";
+import Filter from "./components/Filter/Filter";
 
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
@@ -20,10 +21,17 @@ import shortid from "shortid";
 class App extends Component {
   state = {
     todos: initialTodos,
+    filter: "",
   };
 
   addTodo = (text) => {
-    console.log(text);
+    const todo = {
+      id: shortid.generate(),
+      text,
+      completed: false,
+    };
+
+    this.setState(({ todos }) => ({ todos: [todo, ...todos] }));
   };
 
   deleteTodo = (todoId) => {
@@ -61,14 +69,33 @@ class App extends Component {
   //   }, 2000);
   // };
 
-  render() {
+  changeFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  getVisibleTodos = () => {
+    const { todos, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return todos.filter((todo) =>
+      todo.text.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  calculateCompletedTodos = () => {
     const { todos } = this.state;
 
-    const totalTodoCount = todos.length;
-    const completedTodoCount = todos.reduce(
+    return todos.reduce(
       (total, todo) => (todo.completed ? total + 1 : total),
       0
     );
+  };
+
+  render() {
+    const { todos, filter } = this.state;
+    const totalTodoCount = todos.length;
+    const completedTodoCount = this.calculateCompletedTodos();
+    const visibleTodos = this.getVisibleTodos();
 
     return (
       <>
@@ -87,8 +114,10 @@ class App extends Component {
 
         <TodoEditor onSubmit={this.addTodo} />
 
+        <Filter value={filter} onChangeFilter={this.changeFilter} />
+
         <TodoList
-          todos={todos}
+          todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
         />
