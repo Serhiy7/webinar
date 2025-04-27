@@ -2,9 +2,11 @@
 // import Dropdown from "./components/Dropdown";
 // import ColorPicker from "./components/ColorPicker";
 import TodoList from "./components/TodoList/";
+import TodoEditor from "./components/TodoEditor";
 import { Component } from "react";
 // import Form from "./components/Form/Form.jsx";
 import initialTodos from "./todos.json";
+import shortid from "shortid";
 
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
@@ -18,6 +20,10 @@ import initialTodos from "./todos.json";
 class App extends Component {
   state = {
     todos: initialTodos,
+  };
+
+  addTodo = (text) => {
+    console.log(text);
   };
 
   deleteTodo = (todoId) => {
@@ -78,6 +84,8 @@ class App extends Component {
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Кол-во выполненных: {completedTodoCount}</p>
         </div>
+
+        <TodoEditor onSubmit={this.addTodo} />
 
         <TodoList
           todos={todos}
