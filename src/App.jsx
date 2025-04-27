@@ -29,18 +29,24 @@ class App extends Component {
   toggleCompleted = (todoId) => {
     console.log(todoId);
 
-    this.setState((prevState) => ({
-      todos: prevState.todos.map((todo) => {
-        if (todo.id === todoId) {
-          console.log("Нашли тот туду который нужно!");
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      }),
+    this.setState(({ todos }) => ({
+      todos: todos.map((todo) =>
+        todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+      ),
     }));
+
+    // this.setState((prevState) => ({
+    //   todos: prevState.todos.map((todo) => {
+    //     if (todo.id === todoId) {
+    //       console.log("Нашли тот туду который нужно!");
+    //       return {
+    //         ...todo,
+    //         completed: !todo.completed,
+    //       };
+    //     }
+    //     return todo;
+    //   }),
+    // }));
   };
 
   // formSubmitHandler = (data) => {
