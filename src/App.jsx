@@ -27,8 +27,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log("App componentDidMount");
-
     const todos = localStorage.getItem("todos");
     const parsedTodos = JSON.parse(todos);
 
@@ -40,7 +38,6 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     // порядок важен
-    console.log("App componentDidUpdate");
 
     if (this.state.todos != prevState.todos) {
       console.log("обновилось поле");
@@ -123,7 +120,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("App render");
     const { todos, filter, showModal } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
@@ -135,7 +131,7 @@ class App extends Component {
           Open Modal
         </button>
         {showModal && (
-          <Modal>
+          <Modal onClose={this.toggleModal}>
             <h1>Hello windows</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
@@ -157,7 +153,7 @@ class App extends Component {
 
         {/* <ColorPicker options={colorPickerOptions} /> */}
 
-        <div>
+        {/* <div>
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Кол-во выполненных: {completedTodoCount}</p>
         </div>
@@ -170,7 +166,7 @@ class App extends Component {
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        />
+        /> */}
       </>
     );
   }
