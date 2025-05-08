@@ -6,6 +6,7 @@ import TodoEditor from "./components/TodoEditor";
 import { Component } from "react";
 // import Form from "./components/Form/Form.jsx";
 // import initialTodos from "./todos.json";
+import Modal from "./components/Modal";
 import shortid from "shortid";
 import Filter from "./components/Filter/Filter";
 
@@ -22,7 +23,31 @@ class App extends Component {
   state = {
     todos: [],
     filter: "",
+    showModal: false,
   };
+
+  componentDidMount() {
+    console.log("App componentDidMount");
+
+    const todos = localStorage.getItem("todos");
+    const parsedTodos = JSON.parse(todos);
+
+    console.log(parsedTodos);
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // порядок важен
+    console.log("App componentDidUpdate");
+
+    if (this.state.todos != prevState.todos) {
+      console.log("обновилось поле");
+
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
 
   addTodo = (text) => {
     const todo = {
@@ -91,38 +116,39 @@ class App extends Component {
     );
   };
 
-  componentDidMount() {
-    console.log("App componentDidMount");
-
-    const todos = localStorage.getItem("todos");
-    const parsedTodos = JSON.parse(todos);
-
-    console.log(parsedTodos);
-    if (parsedTodos) {
-      this.setState({ todos: parsedTodos });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // порядок важен
-    console.log("App componentDidUpdate");
-
-    if (this.state.todos != prevState.todos) {
-      console.log("обновилось поле");
-
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    }
-  }
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
 
   render() {
     console.log("App render");
-    const { todos, filter } = this.state;
+    const { todos, filter, showModal } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
     const visibleTodos = this.getVisibleTodos();
 
     return (
       <>
+        <button type="button" onClick={this.toggleModal}>
+          Open Modal
+        </button>
+        {showModal && (
+          <Modal>
+            <h1>Hello windows</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+              omnis modi obcaecati officia error accusantium maiores quisquam
+              magni, dolor dolorem rem quas suscipit temporibus facere?
+              Dignissimos fugiat doloribus placeat? Esse?
+            </p>
+            <button type="button" onClick={this.toggleModal}>
+              Close Modal
+            </button>
+          </Modal>
+        )}
+
         {/* <Form onSubm={this.formSubmitHandler} /> */}
 
         {/* <Counter initialValue={10} /> */}
