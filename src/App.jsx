@@ -102,7 +102,6 @@ class App extends Component {
       this.setState({ todos: parsedTodos });
     }
   }
-  s;
 
   componentDidUpdate(prevProps, prevState) {
     // порядок важен
