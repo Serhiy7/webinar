@@ -5,7 +5,7 @@ import TodoList from "./components/TodoList/";
 import TodoEditor from "./components/TodoEditor";
 import { Component } from "react";
 // import Form from "./components/Form/Form.jsx";
-import initialTodos from "./todos.json";
+// import initialTodos from "./todos.json";
 import shortid from "shortid";
 import Filter from "./components/Filter/Filter";
 
@@ -20,7 +20,7 @@ import Filter from "./components/Filter/Filter";
 
 class App extends Component {
   state = {
-    todos: initialTodos,
+    todos: [],
     filter: "",
   };
 
@@ -91,7 +91,32 @@ class App extends Component {
     );
   };
 
+  componentDidMount() {
+    console.log("App componentDidMount");
+
+    const todos = localStorage.getItem("todos");
+    const parsedTodos = JSON.parse(todos);
+
+    console.log(parsedTodos);
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+  s;
+
+  componentDidUpdate(prevProps, prevState) {
+    // порядок важен
+    console.log("App componentDidUpdate");
+
+    if (this.state.todos != prevState.todos) {
+      console.log("обновилось поле");
+
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
+
   render() {
+    console.log("App render");
     const { todos, filter } = this.state;
     const totalTodoCount = todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
