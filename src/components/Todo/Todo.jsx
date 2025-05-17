@@ -15,4 +15,4 @@ const Todo = ({ text, completed, onToggleCompleted, onDelete }) => (
   </>
 );
 
-export default Todo;
+// export default Todo;
