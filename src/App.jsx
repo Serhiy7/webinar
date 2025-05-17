@@ -7,6 +7,9 @@ import { Component } from "react";
 // import Form from "./components/Form/Form.jsx";
 // import initialTodos from "./todos.json";
 import Modal from "./components/Modal";
+import Clock from "./components/Clock";
+import Tabs from "./components/Tabs";
+import tabs from "./tabs.json";
 import shortid from "shortid";
 import Filter from "./components/Filter/Filter";
 
@@ -127,10 +130,11 @@ class App extends Component {
 
     return (
       <>
-        <button type="button" onClick={this.toggleModal}>
+        {/* <Tabs items={tabs} /> */}
+        {/* <button type="button" onClick={this.toggleModal}>
           Open Modal
-        </button>
-        {showModal && (
+        </button> */}
+        {/* {showModal && (
           <Modal onClose={this.toggleModal}>
             <h1>Hello windows</h1>
             <p>
@@ -143,7 +147,7 @@ class App extends Component {
               Close Modal
             </button>
           </Modal>
-        )}
+        )} */}
 
         {/* <Form onSubm={this.formSubmitHandler} /> */}
 
@@ -153,7 +157,7 @@ class App extends Component {
 
         {/* <ColorPicker options={colorPickerOptions} /> */}
 
-        {/* <div>
+        <div>
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Кол-во выполненных: {completedTodoCount}</p>
         </div>
@@ -166,7 +170,7 @@ class App extends Component {
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        /> */}
+        />
       </>
     );
   }
