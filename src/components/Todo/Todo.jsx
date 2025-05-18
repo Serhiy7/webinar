@@ -9,11 +9,10 @@ const Todo = ({ text, completed, onToggleCompleted, onDelete }) => (
       onChange={onToggleCompleted}
     />
     <p className="TodoList__text">{text}</p>
-    {/* <button type="button" className="TodoList__btn" onClick={onDelete}>
+    <button type="button" className="TodoList__btn" onClick={onDelete}>
       Удалить
-    </button> */}
+    </button>
   </>
 );
 
 export default Todo;
-ss;
