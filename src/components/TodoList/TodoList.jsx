@@ -12,12 +12,12 @@ const TodoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
           "TodoList__item--completed": completed,
         })}
       >
-        <Todo
+        {/* <Todo
           text={text}
           completed={completed}
           onToggleCompleted={() => onToggleCompleted(id)}
           onDelete={() => onDeleteTodo(id)}
-        />
+        /> */}
       </li>
     ))}
   </ul>
